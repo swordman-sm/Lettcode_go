@@ -34,23 +34,30 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	}
 	midLeft := 0
 	midRight := 0
+	//确定mid左侧的数据 有三种情况
+	//1.nums1Mid的位置为0
 	if nums1Mid == 0 {
 		midLeft = nums2[nums2Mid-1]
 	} else if nums2Mid == 0 {
+		//2.nums2Mid的位置为0
 		midLeft = nums1[nums1Mid-1]
 	} else {
+		//其余情况取最大值
 		midLeft = max(nums1[nums1Mid-1], nums2[nums2Mid-1])
 	}
 
 	if (len(nums1)+len(nums2))&1 == 1 {
 		return float64(midLeft)
 	}
-
+	//确定mid右侧的数据 有三种情况
+	//1.nums1Mid的位置为该数组最大长度
 	if nums1Mid == len(nums1) {
 		midRight = nums2[nums2Mid]
 	} else if nums2Mid == len(nums2) {
+		//1.nums2Mid的位置为该数组最大长度
 		midRight = nums1[nums1Mid]
 	} else {
+		//其余情况取最小值
 		midRight = min(nums1[nums1Mid], nums2[nums2Mid])
 	}
 	return float64(midLeft+midRight) / 2
